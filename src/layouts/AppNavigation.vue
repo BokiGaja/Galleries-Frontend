@@ -11,7 +11,7 @@
       <router-link :to="{name: 'login'}" v-if="!loggedIn" class="btn btn-outline-info navButton" type="button"
       >Login
       </router-link>
-      <button class="btn btn-outline-info navButton" type="button" v-if="loggedIn" @click="logoutAndRedirect">Logout</button>
+      <button class="btn btn-outline-info navButton" type="button" v-if="loggedIn" @click="logoutAndRedirect">Logout({{userName}})</button>
     </form>
   </nav>
 </template>
@@ -22,7 +22,7 @@
   export default {
     name: "AppNavigation",
     computed: {
-      ...mapGetters(['loggedIn'])
+      ...mapGetters(['loggedIn', 'userName'])
     },
     methods: {
       ...mapActions(['logout']),

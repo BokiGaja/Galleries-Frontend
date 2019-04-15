@@ -8,7 +8,7 @@
       <div>
         <input type="password" class="form-control loginInput" placeholder="password" v-model="credentials.password">
       </div>
-      <button type="submit" class="btn btn-primary">Login</button>
+      <button type="submit" class="btn btn-primary">Log in</button>
     </form>
     <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 20px">
       {{ errorMessage }}
