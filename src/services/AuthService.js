@@ -10,8 +10,6 @@ class AuthService {
       const {data} = await auth.post('/register', credentials);
       if (data) {
         return data;
-      } else {
-        this.login(credentials);
       }
     } catch (e) {
       return e;

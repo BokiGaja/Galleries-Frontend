@@ -5,22 +5,25 @@
       >All Galleries
       </router-link>
       <img src="../assets/logo.png" alt="logo" class="logo">
-      <router-link :to="{name: 'register'}" class="btn btn-outline-info navButton" type="button"
+      <router-link :to="{name: 'register'}" v-if="!loggedIn" class="btn btn-outline-info navButton" type="button"
       >Register
       </router-link>
-      <router-link :to="{name: 'login'}" class="btn btn-outline-info navButton" type="button"
+      <router-link :to="{name: 'login'}" v-if="!loggedIn" class="btn btn-outline-info navButton" type="button"
       >Login
       </router-link>
-      <button class="btn btn-outline-info navButton" type="button" @click="logoutAndRedirect">Logout</button>
+      <button class="btn btn-outline-info navButton" type="button" v-if="loggedIn" @click="logoutAndRedirect">Logout</button>
     </form>
   </nav>
 </template>
 
 <script>
-  import {mapActions} from 'vuex'
+  import {mapActions, mapGetters} from 'vuex'
 
   export default {
     name: "AppNavigation",
+    computed: {
+      ...mapGetters(['loggedIn'])
+    },
     methods: {
       ...mapActions(['logout']),
       async logoutAndRedirect() {

@@ -32,6 +32,7 @@
 
 <script>
   import {authService} from "../services/AuthService";
+  import {mapActions} from 'vuex'
 
   export default {
     name: "Register",
@@ -50,6 +51,7 @@
       }
     },
     methods: {
+      ...mapActions(['login']),
       async registerAndRedirect() {
         if (this.checked) {
           try {
@@ -58,6 +60,7 @@
               this.error = true;
               this.errorMessage = data.error;
             } else {
+              this.login({...this.credentials});
               this.$router.push('/');
             }
           } catch (e) {

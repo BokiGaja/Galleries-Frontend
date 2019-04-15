@@ -14,12 +14,14 @@ export default new Router({
     {
       path: '/register',
       name: 'register',
-      component: () => import('./views/Register.vue')
+      component: () => import('./views/Register.vue'),
+      meta: {requiresGuest: true}
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('./views/Login.vue')
+      component: () => import('./views/Login.vue'),
+      meta: {requiresGuest: true}
     },
   ]
 })
