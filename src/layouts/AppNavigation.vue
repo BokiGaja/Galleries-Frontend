@@ -8,6 +8,9 @@
       <router-link :to="{name: 'register'}" class="btn btn-outline-info navButton" type="button"
       >Register
       </router-link>
+      <router-link :to="{name: 'login'}" class="btn btn-outline-info navButton" type="button"
+      >Login
+      </router-link>
     </form>
   </nav>
 </template>

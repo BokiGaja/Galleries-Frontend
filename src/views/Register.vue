@@ -31,7 +31,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import {authService} from "../services/AuthService";
 
   export default {
