@@ -18,6 +18,10 @@
         <input type="password" placeholder="Confirm password" class="form-control registerInput"
                v-model="credentials.password_confirmation">
       </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="checked">
+        <label class="form-check-label" for="exampleCheck1">I accept terms and coditions</label>
+      </div>
       <button type="submit" class="btn btn-primary">Register</button>
     </form>
     <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
@@ -41,22 +45,28 @@
           password: '',
           password_confirmation: ''
         },
+        checked: false,
         error: false,
         errorMessage: ''
       }
     },
     methods: {
       async registerAndRedirect() {
-        try {
-          const data = await authService.register({...this.credentials});
-          if (data) {
-            this.error = true;
-            this.errorMessage = data.error;
-          } else {
-            this.$router.push('/');
+        if (this.checked) {
+          try {
+            const data = await authService.register({...this.credentials});
+            if (data) {
+              this.error = true;
+              this.errorMessage = data.error;
+            } else {
+              this.$router.push('/');
+            }
+          } catch (e) {
+            return e;
           }
-        } catch (e) {
-          return e;
+        } else {
+          this.error = true;
+          this.errorMessage = "Please check and agree with our terms and conditions"
         }
       }
     },
@@ -70,7 +80,7 @@
     padding-top: 20px;
     background-color: whitesmoke;
     width: 300px;
-    height: 420px;
+    height: 450px;
     border: 3px skyblue solid;
     border-radius: 20px;
   }
