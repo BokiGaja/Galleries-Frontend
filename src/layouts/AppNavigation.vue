@@ -11,14 +11,23 @@
       <router-link :to="{name: 'login'}" class="btn btn-outline-info navButton" type="button"
       >Login
       </router-link>
+      <button class="btn btn-outline-info navButton" type="button" @click="logoutAndRedirect">Logout</button>
     </form>
   </nav>
 </template>
 
 <script>
+  import {mapActions} from 'vuex'
 
   export default {
     name: "AppNavigation",
+    methods: {
+      ...mapActions(['logout']),
+      async logoutAndRedirect() {
+        await this.logout();
+        this.$router.push('/');
+      }
+    },
   }
 </script>
 

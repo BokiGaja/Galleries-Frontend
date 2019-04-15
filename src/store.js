@@ -18,6 +18,9 @@ export default new Vuex.Store({
     },
     setLoggedUser(state, id) {
       state.loggedUser = id;
+    },
+    destroyToken(state) {
+      state.token = null;
     }
   },
   actions: {
@@ -35,5 +38,9 @@ export default new Vuex.Store({
         return e;
       }
     },
+    async logout(context) {
+      await authService.logout(context.state.token);
+      context.commit('destroyToken');
+    }
   }
 })
