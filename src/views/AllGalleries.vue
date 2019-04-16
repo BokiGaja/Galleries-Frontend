@@ -3,6 +3,7 @@
     <div v-for="(gallery, index) in galleries" :key="index">
       <app-gallery-card :gallery="gallery"/>
     </div>
+    <div class="alert alert-danger" v-if="galleries.length === 0" style="text-align: center">There is no gallery</div>
   </div>
 </template>
 

@@ -13,6 +13,11 @@ export default new Router({
       component: () => import('./views/AllGalleries.vue')
     },
     {
+      path: '/galleries/:id',
+      name: 'singleGallery',
+      component: () => import('./components/AppSingleGallery.vue')
+    },
+    {
       path: '/my-galleries',
       name: 'myGalleries',
       component: () => import('./views/MyGalleries.vue'),
