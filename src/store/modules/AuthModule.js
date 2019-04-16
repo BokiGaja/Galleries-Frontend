@@ -1,10 +1,6 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import {authService} from "./services/AuthService";
+import {authService} from "../../services/AuthService";
 
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export const authModule = {
   state: {
     token: localStorage.getItem('token') || null,
     userId: localStorage.getItem('userId') || null,
@@ -53,4 +49,4 @@ export default new Vuex.Store({
       context.commit('destroyToken');
     }
   }
-})
+};
