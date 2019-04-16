@@ -7,15 +7,20 @@
       <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
     <div class="card-footer text-muted">
-      Created by: {{gallery.user.first_name}}
+      Created by: {{gallery.user.first_name}} {{gallery.user.last_name}}
+      <br>
+      Created {{gallery.created_at | formatDate | diffForHumans}}
     </div>
   </div>
 </template>
 
 <script>
+  import {formatDate} from "../mixins/DateMixin";
+
   export default {
     name: "GalleryCard",
-    props: ['gallery']
+    props: ['gallery'],
+    mixins: [formatDate]
   }
 </script>
 
