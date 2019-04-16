@@ -1,15 +1,13 @@
 <template>
-  <div>
-
-  </div>
+  <app-gallery-card/>
 </template>
 
 <script>
+  import GalleryCard from './AppGalleryCard'
   export default {
-    name: ""
+    name: "SingleGallery",
+    components: {
+      appGalleryCard: GalleryCard
+    }
   }
 </script>
-
-<style scoped>
-
-</style>
