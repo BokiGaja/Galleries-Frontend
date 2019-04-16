@@ -2,7 +2,7 @@ import {galleryService} from "../../services/GalleryService";
 
 export const galleryModule = {
   state: {
-    galleries: []
+    galleries: [],
   },
   getters: {
     getGalleries: state => state.galleries,
@@ -16,6 +16,10 @@ export const galleryModule = {
     async fetchAll({commit}) {
       const data = await galleryService.getAll();
       commit('setGalleries', data)
+    },
+    async setAuthorsGalleries({commit}, id) {
+      const {data} = await galleryService.getUsersGalleries(id);
+      commit('setGalleries', data);
     }
   }
 };

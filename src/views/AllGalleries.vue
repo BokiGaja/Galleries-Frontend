@@ -1,9 +1,12 @@
 <template>
   <div class="home">
-    <div v-for="(gallery, index) in getGalleries" :key="index">
-      <app-gallery-card :gallery="gallery"/>
+    <div v-if="getGalleries.length !== 0">
+      <div v-for="(gallery, index) in getGalleries" :key="index">
+        <app-gallery-card :gallery="gallery" :singleGallery="false"/>
+      </div>
     </div>
-    <div class="alert alert-danger" v-if="getGalleries.length === 0" style="text-align: center">There is no gallery</div>
+    <div class="alert alert-danger" v-if="getGalleries.length === 0" style="text-align: center">There is no gallery
+    </div>
   </div>
 </template>
 
@@ -19,13 +22,19 @@
     computed: {
       ...mapGetters(['getGalleries'])
     },
-    methods: {
-      ...mapActions(['fetchAll'])
+    watch: {
+      '$route'(to, from) {
+        this.$router.go(this.$router.currentRoute)
+      }
     },
-    async beforeRouteEnter(to, from, next) {
-      next(vm => {
-        vm.fetchAll()
-      })
-    }
+    methods: {
+      ...mapActions(['fetchAll', 'setAuthorsGalleries']),
+    },
+    async created() {
+      await this.fetchAll();
+      if (this.$route.params.id) {
+        await this.setAuthorsGalleries(this.$route.params.id);
+      }
+    },
   }
 </script>
