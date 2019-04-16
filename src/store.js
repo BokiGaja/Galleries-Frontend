@@ -32,12 +32,12 @@ export default new Vuex.Store({
     async login({commit}, credentials) {
       try {
         const response = await authService.login(credentials);
-        if (response.acces_token) {
+        if (response.access_token) {
           localStorage.setItem('userId', response.user.id);
           localStorage.setItem('userName', response.user.first_name);
           commit('setUserId', response.user.id);
           commit('setUserName', response.user.first_name);
-          commit('retrieveToken', response.acces_token);
+          commit('retrieveToken', response.access_token);
         }
         if (response.error) {
           return response.error;

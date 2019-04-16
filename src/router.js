@@ -10,7 +10,19 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: () => import('./views/Home.vue')
+      component: () => import('./views/AllGalleries.vue')
+    },
+    {
+      path: '/my-galleries',
+      name: 'myGalleries',
+      component: () => import('./views/MyGalleries.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/create',
+      name: 'newGallery',
+      component: () => import('./views/NewGallery.vue'),
+      meta: {requiresAuth: true}
     },
     {
       path: '/register',

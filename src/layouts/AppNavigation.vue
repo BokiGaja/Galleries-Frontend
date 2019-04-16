@@ -4,14 +4,22 @@
       <router-link :to="{name: 'home'}" class="btn btn-outline-info navButton" type="button"
       >All Galleries
       </router-link>
+      <router-link :to="{name: 'myGalleries'}" class="btn btn-outline-info navButton" type="button" v-if="loggedIn"
+      >My Galleries
+      </router-link>
       <img src="../assets/logo.png" alt="logo" class="logo">
-      <router-link :to="{name: 'register'}" v-if="!loggedIn" class="btn btn-outline-info navButton" type="button"
-      >Register
+      <router-link :to="{name: 'newGallery'}" class="btn btn-outline-info navButton" type="button" v-if="loggedIn"
+      >Create New Gallery
       </router-link>
       <router-link :to="{name: 'login'}" v-if="!loggedIn" class="btn btn-outline-info navButton" type="button"
       >Login
       </router-link>
-      <button class="btn btn-outline-info navButton" type="button" v-if="loggedIn" @click="logoutAndRedirect">Logout({{userName}})</button>
+      <router-link :to="{name: 'register'}" v-if="!loggedIn" class="btn btn-outline-info navButton" type="button"
+      >Register
+      </router-link>
+      <button class="btn btn-outline-info navButton" type="button" v-if="loggedIn" @click="logoutAndRedirect">
+        Logout({{userName}})
+      </button>
     </form>
   </nav>
 </template>
