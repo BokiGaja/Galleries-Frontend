@@ -21,6 +21,17 @@ class GalleryService {
   async getUsersGalleries(id) {
     return user.get('/' + id)
   }
+
+  async createGallery(credentials) {
+    try {
+      const {data} = await gallery.post('', credentials);
+      if (data) {
+        return data;
+      }
+    } catch (e) {
+      return e;
+    }
+  }
 }
 
 export const galleryService = new GalleryService();
