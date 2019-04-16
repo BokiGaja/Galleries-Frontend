@@ -34,7 +34,7 @@
       }
     },
     computed: {
-      ...mapGetters(['getGalleries'])
+      ...mapGetters(['getGalleries', 'getUserId'])
     },
     watch: {
       '$route'() {
@@ -50,7 +50,14 @@
         try {
           await this.setAuthorsGalleries(this.$route.params.id);
         } catch (e) {
-          this.$router.push('/');
+          this.$router.go('/');
+        }
+      }
+      if (this.$route.name === 'myGalleries') {
+        try {
+          await this.setAuthorsGalleries(this.getUserId)
+        } catch (e) {
+          this.$router.go('/');
         }
       }
     },

@@ -18,15 +18,15 @@ export default new Router({
       component: () => import('./views/AllGalleries.vue')
     },
     {
+      path: '/my-galleries',
+      name: 'myGalleries',
+      component: () => import('./views/AllGalleries.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
       path: '/galleries/:id',
       name: 'singleGallery',
       component: () => import('./components/AppSingleGallery.vue')
-    },
-    {
-      path: '/my-galleries',
-      name: 'myGalleries',
-      component: () => import('./views/MyGalleries.vue'),
-      meta: {requiresAuth: true}
     },
     {
       path: '/create',

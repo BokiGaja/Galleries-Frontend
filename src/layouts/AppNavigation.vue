@@ -18,7 +18,7 @@
       >Register
       </router-link>
       <button class="btn btn-outline-info navButton" type="button" v-if="loggedIn" @click="logoutAndRedirect">
-        Logout({{userName}})
+        Logout({{getUserName}})
       </button>
     </form>
   </nav>
@@ -30,7 +30,7 @@
   export default {
     name: "AppNavigation",
     computed: {
-      ...mapGetters(['loggedIn', 'userName'])
+      ...mapGetters(['loggedIn', 'getUserName'])
     },
     methods: {
       ...mapActions(['logout']),

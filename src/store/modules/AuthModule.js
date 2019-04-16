@@ -8,7 +8,9 @@ export const authModule = {
   },
   getters: {
     loggedIn: state => state.token !== null,
-    userName: state => state.userName
+    getUserName: state => state.userName,
+    getUserId: state => state.userId
+
   },
   mutations: {
     retrieveToken(state, token) {
