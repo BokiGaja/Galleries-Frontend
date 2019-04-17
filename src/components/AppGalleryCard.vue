@@ -1,11 +1,11 @@
 <template>
   <div class="card galleryCard">
-    <!--    <img class="card-img-top" src="..." alt="Card image cap">-->
     <div class="card-body">
       <h5 class="card-title cardLink" @click="seeGallery">{{gallery.title}}</h5>
-      <p v-if="singleGallery" @click="seeAuthor" class="cardLink"> Created by: {{gallery.user.first_name}} {{gallery.user.last_name}}</p>
+      <!--    <img class="card-img-top" src="..." alt="Card image cap">-->
+      <router-link v-if="singleGallery" :to="{name: 'authorsGallery', params:{id: this.gallery.user.id}}" class="cardLink"> {{gallery.user.first_name}} {{gallery.user.last_name}}</router-link>
       <p v-if="singleGallery"> Created at: {{gallery.created_at | formatDate}}</p>
-      <p class="card-text">{{gallery.description}}</p>
+      <p class="card-text" v-if="singleGallery">{{gallery.description}}</p>
     </div>
     <div class="card-footer text-muted" v-if="!singleGallery">
       Created by:<router-link :to="{name: 'authorsGallery', params:{id: this.gallery.user.id}}" class="cardLink"> {{gallery.user.first_name}} {{gallery.user.last_name}}</router-link>

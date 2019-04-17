@@ -3,7 +3,7 @@
     <div style="text-align: center">
       <form class="form-inline" style="width: 350px; margin: 20px auto" @submit.prevent="searchList(searchParams)">
         <input class="form-control mr-sm-1" type="text" placeholder="Search" aria-label="Search" v-model="searchParams">
-        <button class="btn btn-outline-info btn-rounded my-0" type="submit">Search</button>
+        <button class="btn btn-outline-info btn-rounded my-0" type="submit">Filtriraj</button>
       </form>
     </div>
     <div v-if="getGalleries.length !== 0" style="text-align: center">
