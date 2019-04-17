@@ -1,0 +1,15 @@
+import axios from 'axios'
+
+const comment = axios.create({
+  baseURL: 'http://localhost:8000/api/auth/comment'
+});
+
+
+class CommentService {
+  async getCommentsForGallery(id) {
+    const {data} = await comment.get('/' + id);
+    return data;
+  }
+}
+
+export const commentService = new CommentService();
