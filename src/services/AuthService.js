@@ -35,6 +35,8 @@ class AuthService {
     try {
       const {data} = await auth.post('/logout');
       localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+      localStorage.removeItem('userName');
       return data;
     } catch (e) {
       return e;

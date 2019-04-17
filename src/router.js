@@ -20,12 +20,12 @@ export default new Router({
     {
       path: '/authors/:id',
       name: 'authorsGallery',
-      component: () => import('./views/AllGalleries.vue')
+      component: () => import('./views/UsersGallery.vue')
     },
     {
       path: '/my-galleries',
       name: 'myGalleries',
-      component: () => import('./views/AllGalleries.vue'),
+      component: () => import('./views/UsersGallery.vue'),
       meta: {requiresAuth: true}
     },
     {

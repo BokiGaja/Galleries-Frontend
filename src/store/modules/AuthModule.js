@@ -46,8 +46,6 @@ export const authModule = {
     },
     async logout(context) {
       await authService.logout(context.state.token);
-      localStorage.removeItem('userId');
-      localStorage.removeItem('userName');
       context.commit('destroyToken');
     }
   }

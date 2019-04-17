@@ -36,7 +36,7 @@
       ...mapActions(['logout']),
       async logoutAndRedirect() {
         await this.logout();
-        this.$router.push('/');
+        this.$router.go('/');
       }
     },
   }

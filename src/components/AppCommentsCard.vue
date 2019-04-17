@@ -13,7 +13,7 @@
       <h4>Add Comment</h4>
       <form @submit.prevent="createComment">
         <textarea class="form-control inputTextarea" id="" cols="20" rows="10" v-model="credentials.content" required
-                  maxlength="7"/>
+                  maxlength="1000"/>
         <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
           {{ errorMessage }}
         </div>
