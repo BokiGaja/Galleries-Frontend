@@ -3,13 +3,13 @@
     <h2>Comments</h2>
     <hr>
     <div v-for="(comment, index) in comments" :key="index" class="commentCard">
-      <h4>{{ comment.content }}</h4>
-      <p class="text-muted">by {{comment.user.first_name}}</p>
+      <h5>{{ comment.content }}</h5>
+      <p class="text-muted">by {{comment.user.first_name}} at {{comment.created_at | formatDate}}</p>
     </div>
     <hr>
     <h4>Add Comment</h4>
     <form @submit.prevent="createComment">
-      <textarea class="form-control inputTextarea" id="" cols="20" rows="10" v-model="credentials.content"/>
+      <textarea class="form-control inputTextarea" id="" cols="20" rows="10" v-model="credentials.content" required maxlength="7"/>
       <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
         {{ errorMessage }}
       </div>
@@ -21,6 +21,7 @@
 <script>
   import {commentService} from "../services/CommentService"
   import {mapGetters} from 'vuex'
+  import {formatDate} from "../mixins/DateMixin";
 
   export default {
     name: "CommentsCard",
@@ -37,6 +38,7 @@
         errorMessage: ''
       }
     },
+    mixins: [formatDate],
     computed: {
       ...mapGetters(['getUserId', 'getUserName'])
     },
@@ -66,14 +68,15 @@
   }
 
   .commentCard {
-    width: 200px;
-    height: 100px;
+    width: 300px;
+    height: 130px;
     margin: 10px auto;
     border: 2px skyblue solid;
     background-color: whitesmoke;
     font-family: SansSerif;
     padding-top: 15px;
     border-radius: 20px;
+    overflow: auto;
   }
 
   .inputTextarea {
