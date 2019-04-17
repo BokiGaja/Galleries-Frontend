@@ -11,7 +11,11 @@
           <p> Created at: {{gallery.created_at | formatDate}}</p>
           <p class="card-text">{{gallery.description}}</p>
           <pictures-carousel :pictures="gallery.pictures" style="width: 600px; height: 400px"/>
-          <router-link :to="{name: 'editGallery', params: {id: gallery.id}}" class="btn btn-primary" v-if="gallery.user.id == getUserId">Edit</router-link>
+          <div v-if="gallery.user.id == getUserId">
+            <router-link :to="{name: 'editGallery', params: {id: gallery.id}}" class="btn btn-primary">Edit
+            </router-link>
+            <button class="btn btn-danger" @click="deleteGallery(gallery.id)">Delete</button>
+          </div>
           <app-comments-card :galleryId="gallery.id"/>
         </div>
         <div v-if="!singleGallery">
@@ -33,6 +37,7 @@
 
 <script>
   import {formatDate} from "../mixins/DateMixin"
+  import {galleryService} from "../services/GalleryService";
   import PicturesCarousel from '@/components/PicturesCarousel'
   import AppCommentsCard from '@/components/AppCommentsCard'
   import {mapGetters} from 'vuex'
@@ -53,6 +58,10 @@
     methods: {
       seeGallery() {
         this.$router.push('/galleries/' + this.gallery.id)
+      },
+      deleteGallery(id) {
+        galleryService.deleteGallery(id);
+        this.$router.push('/my-galleries')
       }
     },
     mixins: [formatDate]

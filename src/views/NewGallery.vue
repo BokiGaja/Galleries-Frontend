@@ -20,7 +20,7 @@
         </div>
       </div>
       <button class="btn btn-primary" type="submit">{{editing ? 'Edit' : 'Add New'}} Gallery</button>
-      <router-link class="btn btn-danger" :to="{name: 'myGalleries'}">Cancel</router-link>
+      <router-link class="btn btn-danger" :to="editing ? {name: 'singleGallery', params: {id: this.$route.params.id}} : {name: 'myGalleries'}">Cancel</router-link>
     </form>
     <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
       {{ errorMessage }}

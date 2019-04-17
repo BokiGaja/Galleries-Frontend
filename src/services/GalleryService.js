@@ -43,6 +43,10 @@ class GalleryService {
       return e;
     }
   }
+
+  async deleteGallery(id) {
+    return gallery.delete('/' + id)
+  }
 }
 
 export const galleryService = new GalleryService();

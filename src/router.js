@@ -31,7 +31,7 @@ export default new Router({
     {
       path: '/galleries/:id',
       name: 'singleGallery',
-      component: () => import('./components/AppSingleGallery.vue')
+      component: () => import('./views/SingleGallery.vue')
     },
     {
       path: '/create',
