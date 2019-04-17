@@ -36,6 +36,7 @@
     name: "NewGallery",
     data() {
       return {
+        galleryId: null,
         credentials: {
           title: '',
           description: '',
@@ -84,7 +85,7 @@
             this.error = true;
             this.errorMessage = data.error;
           } else {
-            this.$router.push('/my-galleries');
+            this.$router.push('/galleries/' + this.$route.params.id);
           }
         } else {
           const data = await galleryService.createGallery({...this.credentials, user_id: parseInt(this.getUserId)});
@@ -100,6 +101,9 @@
     async created() {
       if (this.$route.params.id) {
         const {data} = await galleryService.getOne(this.$route.params.id);
+        if (data.user_id != this.getUserId) {
+          this.$router.push('/my-galleries');
+        }
         this.credentials.title = data.title;
         this.credentials.description = data.description;
         this.credentials.user_id = data.user_id;

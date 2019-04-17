@@ -23,7 +23,7 @@ export const galleryModule = {
       } else {
         state.galleries = state.originalList
       }
-    }
+    },
   },
   actions: {
     async fetchAll({commit}) {
@@ -36,6 +36,6 @@ export const galleryModule = {
     },
     searchList({commit}, searchParams) {
       commit('filterList', searchParams)
-    }
+    },
   }
 };
