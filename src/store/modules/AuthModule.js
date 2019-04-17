@@ -7,7 +7,7 @@ export const authModule = {
     userName: localStorage.getItem('userName') || null
   },
   getters: {
-    loggedIn: state => state.token !== null,
+    loggedIn: state => state.userId !== null,
     getUserName: state => state.userName,
     getUserId: state => state.userId
 

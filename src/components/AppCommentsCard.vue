@@ -7,14 +7,17 @@
       <p class="text-muted">by {{comment.user.first_name}} at {{comment.created_at | formatDate}}</p>
     </div>
     <hr>
-    <h4>Add Comment</h4>
-    <form @submit.prevent="createComment">
-      <textarea class="form-control inputTextarea" id="" cols="20" rows="10" v-model="credentials.content" required maxlength="7"/>
-      <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
-        {{ errorMessage }}
-      </div>
-      <button type="submit" class="btn btn-primary">Add comment</button>
-    </form>
+    <div v-if="loggedIn">
+      <h4>Add Comment</h4>
+      <form @submit.prevent="createComment">
+        <textarea class="form-control inputTextarea" id="" cols="20" rows="10" v-model="credentials.content" required
+                  maxlength="7"/>
+        <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
+          {{ errorMessage }}
+        </div>
+        <button type="submit" class="btn btn-primary">Add comment</button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -40,7 +43,7 @@
     },
     mixins: [formatDate],
     computed: {
-      ...mapGetters(['getUserId', 'getUserName'])
+      ...mapGetters(['getUserId', 'getUserName', 'loggedIn'])
     },
     methods: {
       async createComment() {
