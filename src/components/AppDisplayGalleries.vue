@@ -14,7 +14,7 @@
 </template>
 
 <script>
-  import AppGalleryCard from '@/components/AppGalleryCard'
+  import AppGalleryCard from '@/components/GalleryCards/AppGalleryCard'
   import AppSearch from '@/components/AppSearch'
 
   export default {

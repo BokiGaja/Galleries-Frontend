@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import GalleryCard from '../components/AppGalleryCard'
+  import GalleryCard from '../components/GalleryCards/AppGalleryCard'
   import {galleryService} from "../services/GalleryService";
 
   export default {
