@@ -60,11 +60,13 @@
         }
       },
       async deleteComment(id) {
-        try {
-          await commentService.deleteComment(id);
-          this.comments = this.comments.filter(comment => comment.id !== id);
-        } catch (e) {
-          return e
+        if (confirm('Click ok to delete this comment or cancel this action')) {
+          try {
+            await commentService.deleteComment(id);
+            this.comments = this.comments.filter(comment => comment.id !== id);
+          } catch (e) {
+            return e
+          }
         }
       }
     },
