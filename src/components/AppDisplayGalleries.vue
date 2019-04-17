@@ -2,10 +2,10 @@
   <div>
     <app-search/>
     <div v-if="galleries.length !== 0" style="text-align: center">
-      <div v-for="(gallery, index) in galleries.slice(0, currPage*10)" :key="index">
+      <div v-for="(gallery, index) in galleries.slice(0, currPage*numberOfCardsOnPage)" :key="index">
         <app-gallery-card :gallery="gallery" :singleGallery="false"/>
       </div>
-      <button class="btn btn-info btn-lg" @click="currPage++" v-if="galleries.length > currPage*10">Load more
+      <button class="btn btn-info btn-lg" @click="currPage++" v-if="galleries.length > currPage*numberOfCardsOnPage">Load more
       </button>
     </div>
     <div class="alert alert-danger" v-if="galleries.length === 0" style="text-align: center">There is no gallery
@@ -28,6 +28,7 @@
       return {
         currPage: 1,
         searchParams: '',
+        numberOfCardsOnPage: 10
       }
     },
   }

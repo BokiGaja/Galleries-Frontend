@@ -10,37 +10,26 @@
     </div>
     <hr>
     <div v-if="loggedIn">
-      <h4>Add Comment</h4>
-      <form @submit.prevent="createComment">
-        <textarea class="form-control inputTextarea" id="" cols="20" rows="10" v-model="credentials.content" required
-                  maxlength="1000"/>
-        <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
-          {{ errorMessage }}
-        </div>
-        <button type="submit" class="btn btn-primary">Add comment</button>
-      </form>
+      <app-create-comment :galleryId="galleryId" @commentCreated="updateComments"/>
     </div>
   </div>
 </template>
 
 <script>
-  import {commentService} from "../services/CommentService"
+  import {commentService} from "../../services/CommentService"
   import {mapGetters} from 'vuex'
-  import {formatDate} from "../mixins/DateMixin";
+  import {formatDate} from "../../mixins/DateMixin"
+  import AppCreateComment from '@/components/Comments/AppCreateComment'
 
   export default {
     name: "CommentsCard",
     props: ['galleryId'],
+    components: {
+      AppCreateComment
+    },
     data() {
       return {
         comments: [],
-        credentials: {
-          content: '',
-          gallery_id: this.galleryId,
-          user_id: null
-        },
-        error: false,
-        errorMessage: ''
       }
     },
     mixins: [formatDate],
@@ -48,16 +37,8 @@
       ...mapGetters(['getUserId', 'getUserName', 'loggedIn'])
     },
     methods: {
-      async createComment() {
-        const data = await commentService.createComment({...this.credentials, user_id: this.getUserId});
-        if (data) {
-          this.error = true;
-          this.errorMessage = data.error;
-        } else {
-          this.comments.push({content: this.credentials.content, user: {first_name: this.getUserName}});
-          this.credentials = {...this.credentials, content: ''};
-          this.error = false;
-        }
+      updateComments(newComment) {
+        this.comments.push(newComment)
       },
       async deleteComment(id) {
         if (confirm('Click ok to delete this comment or cancel this action')) {
@@ -94,9 +75,4 @@
     overflow: auto;
   }
 
-  .inputTextarea {
-    width: 300px;
-    height: 100px;
-    margin: 10px auto
-  }
 </style>

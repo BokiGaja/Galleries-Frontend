@@ -20,7 +20,7 @@
   import {galleryService} from "../../services/GalleryService";
   import {mapGetters} from 'vuex'
   import PicturesCarousel from '@/components/PicturesCarousel'
-  import AppCommentsCard from '@/components/AppCommentsCard'
+  import AppCommentsCard from '@/components/Comments/AppCommentsCard'
 
   export default {
     name: "SingleGalleryCard",
