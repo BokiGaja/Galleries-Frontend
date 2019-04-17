@@ -1,7 +1,7 @@
 <template>
   <div class="createPage">
-    <h1 class="createTitle">Create new Gallery</h1>
-    <form @submit.prevent="createNewGallery">
+    <h1 class="createTitle">{{editing ? 'Edit your' : 'Create New'}} Gallery</h1>
+    <form @submit.prevent="submitGallery">
       <input type="text" class="form-control createInput" placeholder="Title" v-model="credentials.title">
       <textarea class="form-control D" id="exampleFormControlTextarea2" rows="3" placeholder="Description"
                 v-model="credentials.description"/>
@@ -19,7 +19,7 @@
           </button>
         </div>
       </div>
-      <button class="btn btn-primary" type="submit">Add Gallery</button>
+      <button class="btn btn-primary" type="submit">{{editing ? 'Edit' : 'Add New'}} Gallery</button>
       <router-link class="btn btn-danger" :to="{name: 'myGalleries'}">Cancel</router-link>
     </form>
     <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
@@ -43,11 +43,17 @@
           user_id: 0
         },
         error: false,
-        errorMessage: ''
+        errorMessage: '',
+        editing: false
       }
     },
     computed: {
       ...mapGetters(['getUserId'])
+    },
+    watch: {
+      '$route'() {
+        this.$router.go(this.$router.currentRoute)
+      }
     },
     methods: {
       addUrlInput() {
@@ -71,16 +77,39 @@
         this.credentials.images = [...currArr];
 
       },
-      async createNewGallery() {
-        const data = await galleryService.createGallery({...this.credentials, user_id: parseInt(this.getUserId)});
-        if (data) {
-          this.error = true;
-          this.errorMessage = data.error;
+      async submitGallery() {
+        if (this.editing) {
+          const data = await galleryService.editGallery(this.$route.params.id, {...this.credentials});
+          if (data) {
+            this.error = true;
+            this.errorMessage = data.error;
+          } else {
+            this.$router.push('/my-galleries');
+          }
         } else {
-          this.$router.push('/my-galleries');
+          const data = await galleryService.createGallery({...this.credentials, user_id: parseInt(this.getUserId)});
+          if (data) {
+            this.error = true;
+            this.errorMessage = data.error;
+          } else {
+            this.$router.push('/my-galleries');
+          }
         }
       }
     },
+    async created() {
+      if (this.$route.params.id) {
+        const {data} = await galleryService.getOne(this.$route.params.id);
+        this.credentials.title = data.title;
+        this.credentials.description = data.description;
+        this.credentials.user_id = data.user_id;
+        this.credentials.images = [];
+        data.pictures.forEach(picture => {
+          this.credentials.images.push(picture.imageUrl);
+        });
+        this.editing = true;
+      }
+    }
   }
 </script>
 

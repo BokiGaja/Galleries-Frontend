@@ -11,6 +11,7 @@
           <p> Created at: {{gallery.created_at | formatDate}}</p>
           <p class="card-text">{{gallery.description}}</p>
           <pictures-carousel :pictures="gallery.pictures" style="width: 600px; height: 400px"/>
+          <router-link :to="{name: 'editGallery', params: {id: gallery.id}}" class="btn btn-primary" v-if="gallery.user.id == getUserId">Edit</router-link>
           <app-comments-card :galleryId="gallery.id"/>
         </div>
         <div v-if="!singleGallery">
@@ -34,12 +35,16 @@
   import {formatDate} from "../mixins/DateMixin"
   import PicturesCarousel from '@/components/PicturesCarousel'
   import AppCommentsCard from '@/components/AppCommentsCard'
+  import {mapGetters} from 'vuex'
 
   export default {
     name: "GalleryCard",
     components: {
       PicturesCarousel,
       AppCommentsCard
+    },
+    computed: {
+      ...mapGetters(['getUserId'])
     },
     props: {
       gallery: Object,

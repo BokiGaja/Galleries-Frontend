@@ -13,6 +13,11 @@ export default new Router({
       component: () => import('./views/AllGalleries.vue')
     },
     {
+      path: '/edit-gallery/:id',
+      name: 'editGallery',
+      component: () => import('./views/NewGallery.vue')
+    },
+    {
       path: '/authors/:id',
       name: 'authorsGallery',
       component: () => import('./views/AllGalleries.vue')

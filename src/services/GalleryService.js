@@ -32,6 +32,17 @@ class GalleryService {
       return e;
     }
   }
+
+  async editGallery(id, credentials) {
+    try {
+      const {data} = await gallery.patch('/' + id, credentials);
+      if (data) {
+        return data;
+      }
+    } catch (e) {
+      return e;
+    }
+  }
 }
 
 export const galleryService = new GalleryService();
