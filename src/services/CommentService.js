@@ -10,6 +10,17 @@ class CommentService {
     const {data} = await comment.get('/' + id);
     return data;
   }
+
+  async createComment(credentials) {
+    try {
+      const {data} = await comment.post('', credentials);
+      if (data) {
+        return data;
+      }
+    } catch (e) {
+      return e;
+    }
+  }
 }
 
 export const commentService = new CommentService();

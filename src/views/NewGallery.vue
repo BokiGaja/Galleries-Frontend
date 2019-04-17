@@ -3,7 +3,7 @@
     <h1 class="createTitle">Create new Gallery</h1>
     <form @submit.prevent="createNewGallery">
       <input type="text" class="form-control createInput" placeholder="Title" v-model="credentials.title">
-      <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Description"
+      <textarea class="form-control D" id="exampleFormControlTextarea2" rows="3" placeholder="Description"
                 v-model="credentials.description"/>
       <div v-for="(image, index) in credentials.images" :key="index">
         <div style="display: flex; flex-direction: row">

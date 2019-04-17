@@ -27,7 +27,7 @@ export const authModule = {
     }
   },
   actions: {
-    async login({commit, dispatch}, credentials) {
+    async login({commit}, credentials) {
       try {
         const response = await authService.login(credentials);
         if (response.access_token) {
@@ -36,9 +36,6 @@ export const authModule = {
           commit('setUserId', response.user.id);
           commit('setUserName', response.user.first_name);
           commit('retrieveToken', response.access_token);
-          setTimeout(async () => {
-            await dispatch('logout');
-          }, 60*60000)
         }
         if (response.error) {
           return response.error;
