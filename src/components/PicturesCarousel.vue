@@ -7,7 +7,9 @@
     <div class="carousel-inner">
       <div :class="index === 0 ? 'carousel-item active' : 'carousel-item'" v-for="(picture, index) in pictures"
            :key="index">
-        <img class="d-block carousel-image" :src="picture.imageUrl" alt="First slide">
+        <a :href="picture.imageUrl" target="_blank">
+          <img class="d-block carousel-image" :src="picture.imageUrl" alt="First slide">
+        </a>
       </div>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
