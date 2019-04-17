@@ -5,6 +5,8 @@
     <div v-for="(comment, index) in comments" :key="index" class="commentCard">
       <h5>{{ comment.content }}</h5>
       <p class="text-muted">by {{comment.user.first_name}} at {{comment.created_at | formatDate}}</p>
+      <button class="btn btn-danger" v-if="comment.user_id == getUserId" @click="deleteComment(comment.id)">Delete
+      </button>
     </div>
     <hr>
     <div v-if="loggedIn">
@@ -55,6 +57,14 @@
           this.comments.push({content: this.credentials.content, user: {first_name: this.getUserName}});
           this.credentials = {...this.credentials, content: ''};
           this.error = false;
+        }
+      },
+      async deleteComment(id) {
+        try {
+          await commentService.deleteComment(id);
+          this.comments = this.comments.filter(comment => comment.id !== id);
+        } catch (e) {
+          return e
         }
       }
     },

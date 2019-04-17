@@ -21,6 +21,10 @@ class CommentService {
       return e;
     }
   }
+
+  async deleteComment(id) {
+    return comment.delete('/'+id);
+  }
 }
 
 export const commentService = new CommentService();
