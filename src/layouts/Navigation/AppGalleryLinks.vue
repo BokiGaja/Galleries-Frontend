@@ -30,31 +30,5 @@
 </script>
 
 <style scoped>
-  .galleryLinks {
-    position: absolute;
-    left: 5px;
-  }
-
-  .logo {
-    height: 100px;
-    float: left;
-  }
-
-  .navBox {
-    float: left;
-    margin-top: 60px;
-    margin-left: 30px
-  }
-
-  .navLink {
-    color: grey;
-    font-weight: bold;
-    font-family: Arial;
-    margin-left: 30px;
-    font-size: 18px;
-  }
-
-  .active {
-    border-bottom: grey 3px solid;
-  }
+  @import "../../styles/NavGalleryLinks.css";
 </style>

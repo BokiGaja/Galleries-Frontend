@@ -37,10 +37,5 @@
 </script>
 
 <style scoped>
-  .card-image {
-    display: block;
-    width: 250px;
-    height: 250px;
-    background-size: cover;
-  }
+  @import "../../styles/GalleryListCard.css";
 </style>

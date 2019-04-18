@@ -13,9 +13,5 @@
 </script>
 
 <style scoped>
-  .showError {
-    text-align: center;
-    width: 300px;
-    margin: 10px auto
-  }
+  @import "../styles/ShowError.css";
 </style>

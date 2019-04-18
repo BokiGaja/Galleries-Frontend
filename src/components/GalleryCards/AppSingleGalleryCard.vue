@@ -1,10 +1,10 @@
 <template>
   <div>
-  <h1 style="font-family: Arial; color: grey; font-weight: bold; text-align: center">{{gallery.title}}</h1>
-  <div style="text-align: center; margin-top: 20px; display: flex; flex-direction: row; height: 100vh; justify-content: center">
+  <h1 class="cardTitle">{{gallery.title}}</h1>
+  <div class="cardFrame">
     <div style="margin-right:30px">
       <pictures-carousel :pictures="gallery.pictures" style="width: 700px; height: 400px"/>
-      <div style="border: 2px solid lightslategrey; background-color: whitesmoke; margin: 10px auto; border-radius: 30px">
+      <div class="cardBody">
         <h2 style="font-style: italic; font-family: SansSerif">Description</h2>
         <h4 class="card-text" style="font-family: SansSerif">"{{gallery.description}}"</h4>
         <router-link :to="{name: 'authorsGallery', params:{id: this.gallery.user.id}}"
@@ -49,3 +49,7 @@
     },
   }
 </script>
+
+<style scoped>
+  @import "../../styles/SingleGalleryCard.css";
+</style>

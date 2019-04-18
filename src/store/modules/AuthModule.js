@@ -13,17 +13,15 @@ export const authModule = {
 
   },
   mutations: {
-    retrieveToken(state, token) {
-      state.token = token;
+    loginUser(state, data) {
+      state.token = data.access_token;
+      state.userId = data.user.id;
+      state.userName = data.user.first_name;
     },
-    setUserId(state, id) {
-      state.userId = id;
-    },
-    setUserName(state, id) {
-      state.userName = id;
-    },
-    destroyToken(state) {
+    logoutUser(state) {
       state.token = null;
+      state.userId = null;
+      state.userName = null;
     }
   },
   actions: {
@@ -31,11 +29,7 @@ export const authModule = {
       try {
         const response = await authService.login(credentials);
         if (response.access_token) {
-          localStorage.setItem('userId', response.user.id);
-          localStorage.setItem('userName', response.user.first_name);
-          commit('setUserId', response.user.id);
-          commit('setUserName', response.user.first_name);
-          commit('retrieveToken', response.access_token);
+          commit('loginUser', response);
         }
         if (response) {
           return response;
@@ -46,7 +40,7 @@ export const authModule = {
     },
     async logout(context) {
       await authService.logout(context.state.token);
-      context.commit('destroyToken');
+      context.commit('logoutUser');
     }
   }
 };

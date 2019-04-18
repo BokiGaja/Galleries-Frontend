@@ -32,19 +32,5 @@
 </script>
 
 <style scoped>
-  .commentsList {
-    height: 400px;
-    overflow-y: scroll;
-  }
-  .commentCard {
-    width: 300px;
-    height: 130px;
-    margin: 10px auto;
-    border: 2px skyblue solid;
-    background-color: whitesmoke;
-    font-family: SansSerif;
-    padding-top: 15px;
-    border-radius: 20px;
-    overflow: auto;
-  }
+  @import "../../styles/CommentsList.css";
 </style>

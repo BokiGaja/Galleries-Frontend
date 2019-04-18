@@ -21,8 +21,5 @@
 </script>
 
 <style scoped>
-  .navigation {
-    background: transparent;
-    height: 100px;
-  }
+  @import "../../styles/Navigation.css";
 </style>

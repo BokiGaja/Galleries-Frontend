@@ -3,7 +3,7 @@
     <h4>Add Comment</h4>
     <form @submit.prevent="createComment">
         <textarea class="form-control inputTextarea" id="" cols="20" rows="10" v-model="credentials.content" required
-                  maxlength="1000"/>
+                  maxlength="1000" style="height: 100px; margin: 10px auto"/>
       <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
         {{ errorMessage }}
       </div>
@@ -49,11 +49,3 @@
     },
   }
 </script>
-
-<style scoped>
-  .inputTextarea {
-    width: 300px;
-    height: 100px;
-    margin: 10px auto
-  }
-</style>

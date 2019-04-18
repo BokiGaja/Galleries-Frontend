@@ -28,21 +28,3 @@
     mixins: [formatDate]
   }
 </script>
-
-<style scoped>
-  .galleryCard {
-    width: 18rem;
-    margin: 10px auto;
-    text-align: center
-  }
-
-  .singleGalleryCard {
-    width: 800px;
-    text-align: center;
-    margin: auto;
-  }
-
-  .cardLink {
-    cursor: pointer;
-  }
-</style>

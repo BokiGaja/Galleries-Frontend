@@ -50,25 +50,5 @@
 </script>
 
 <style scoped>
-  .loginForm {
-    margin: auto;
-    text-align: center;
-    padding-top: 20px;
-    background-color: whitesmoke;
-    width: 300px;
-    height: 270px;
-    border: 3px skyblue solid;
-    border-radius: 20px;
-  }
-
-  .loginTitle {
-    padding: 20px;
-    font-style: italic;
-    font-family: SansSerif;
-  }
-
-  .loginInput {
-    width: 250px;
-    margin: 10px auto;
-  }
+  @import "../styles/Login.css";
 </style>

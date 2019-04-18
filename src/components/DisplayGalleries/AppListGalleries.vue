@@ -33,21 +33,5 @@
 </script>
 
 <style scoped>
-  .listGalleries {
-    margin: auto;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  .wrapper {
-    margin: 10px auto;
-    display: grid;
-    grid-gap: 30px;
-    grid-template-columns: auto auto auto auto auto;
-  }
-  .showMoreButton {
-    width: 150px;
-    margin: auto;
-  }
+  @import "../../styles/ListGalleries.css";
 </style>

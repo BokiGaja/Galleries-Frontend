@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {handleAuthData} from "./HandleAuthData";
 
 const auth = axios.create({
   baseURL: 'http://localhost:8000/api/auth'
@@ -15,13 +16,12 @@ class AuthService {
       return e;
     }
   }
-  // todo Add autoLogout
   async login(credentials) {
     try {
       const {data} = await auth.post('/login', credentials);
       if (data.access_token) {
         const token = data.access_token;
-        localStorage.setItem('token', token);
+        handleAuthData.saveAuthData(data);
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       }
       return data;
@@ -33,9 +33,7 @@ class AuthService {
   async logout(token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ` + token;
     try {
-      localStorage.removeItem('token');
-      localStorage.removeItem('userId');
-      localStorage.removeItem('userName');
+      handleAuthData.removeAuthData();
       const {data} = await auth.post('/logout');
       return data;
     } catch (e) {

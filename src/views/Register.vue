@@ -83,25 +83,5 @@
 </script>
 
 <style scoped>
-  .registerPage {
-    margin: auto;
-    text-align: center;
-    padding-top: 20px;
-    background-color: whitesmoke;
-    width: 300px;
-    height: 450px;
-    border: 3px skyblue solid;
-    border-radius: 20px;
-  }
-
-  .registerTitle {
-    padding: 20px;
-    font-style: italic;
-    font-family: SansSerif;
-  }
-
-  .registerInput {
-    width: 250px;
-    margin: 10px auto;
-  }
+  @import "../styles/Register.css";
 </style>
