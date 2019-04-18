@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import AppDisplayGalleries from '@/components/AppDisplayGalleries'
+  import AppDisplayGalleries from '@/components/DisplayGalleries/AppDisplayGalleries'
   import {mapGetters, mapActions} from 'vuex'
 
   export default {

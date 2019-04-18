@@ -19,7 +19,7 @@
   import {formatDate} from "../../mixins/DateMixin"
   import {galleryService} from "../../services/GalleryService";
   import {mapGetters} from 'vuex'
-  import PicturesCarousel from '@/components/PicturesCarousel'
+  import PicturesCarousel from '@/components/GalleryCards/PicturesCarousel'
   import AppCommentsCard from '@/components/Comments/AppCommentsCard'
 
   export default {

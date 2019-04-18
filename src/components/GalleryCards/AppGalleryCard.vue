@@ -41,7 +41,7 @@
 <style scoped>
   .galleryCard {
     width: 18rem;
-    margin: 20px auto;
+    margin: 10px auto;
     text-align: center
   }
 
