@@ -1,5 +1,6 @@
 <template>
-  <div style="height: 100vh">
+  <div style="height: 100vh; margin-top: 150px">
+    <app-show-error :error="error" :errorMessage="errorMessage"/>
     <div class="loginForm">
       <h1 class="loginTitle">Login</h1>
       <form @submit.prevent="loginAndRedirect">
@@ -11,18 +12,19 @@
         </div>
         <button type="submit" class="btn btn-primary">Log in</button>
       </form>
-      <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 20px">
-        {{ errorMessage }}
-      </div>
     </div>
   </div>
 </template>
 
 <script>
   import {mapActions} from 'vuex'
+  import AppShowError from '@/components/AppShowError'
 
   export default {
     name: "Login",
+    components: {
+      AppShowError
+    },
     data() {
       return {
         credentials: {
@@ -50,7 +52,7 @@
 
 <style scoped>
   .loginForm {
-    margin: 150px auto;
+    margin: auto;
     text-align: center;
     padding-top: 20px;
     background-color: whitesmoke;

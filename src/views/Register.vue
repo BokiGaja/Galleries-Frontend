@@ -1,5 +1,6 @@
 <template>
-  <div style="height: 100vh">
+  <div style="height: 100vh; margin-top: 100px">
+    <app-show-error :error="error" :errorMessage="errorMessage"/>
     <div class="registerPage">
       <h1 class="registerTitle">Register page</h1>
       <form @submit.prevent="registerAndRedirect">
@@ -29,19 +30,20 @@
         </div>
         <button type="submit" class="btn btn-primary">Register</button>
       </form>
-      <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
-        {{ errorMessage }}
-      </div>
     </div>
   </div>
 </template>
 
 <script>
-  import {authService} from "../services/AuthService";
+  import {authService} from "../services/AuthService"
+  import AppShowError from '@/components/AppShowError'
   import {mapActions} from 'vuex'
 
   export default {
     name: "Register",
+    components: {
+      AppShowError
+    },
     data() {
       return {
         credentials: {
@@ -83,7 +85,7 @@
 
 <style scoped>
   .registerPage {
-    margin: 150px auto;
+    margin: auto;
     text-align: center;
     padding-top: 20px;
     background-color: whitesmoke;
