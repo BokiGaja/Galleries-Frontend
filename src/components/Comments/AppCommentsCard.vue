@@ -2,12 +2,7 @@
   <div class="comments">
     <h2>Comments</h2>
     <hr>
-    <div v-for="(comment, index) in comments" :key="index" class="commentCard">
-      <h5>{{ comment.content }}</h5>
-      <p class="text-muted">by {{comment.user.first_name}} at {{comment.created_at | formatDate}}</p>
-      <button class="btn btn-danger" v-if="comment.user_id == getUserId" @click="deleteComment(comment.id)">Delete
-      </button>
-    </div>
+    <app-comments-list :comments="comments" @commentDeleted="deleteComment"/>
     <hr>
     <div v-if="loggedIn">
       <app-create-comment :galleryId="galleryId" @commentCreated="updateComments"/>
@@ -18,23 +13,23 @@
 <script>
   import {commentService} from "../../services/CommentService"
   import {mapGetters} from 'vuex'
-  import {formatDate} from "../../mixins/DateMixin"
   import AppCreateComment from '@/components/Comments/AppCreateComment'
+  import AppCommentsList from '@/components/Comments/AppCommentsList'
 
   export default {
     name: "CommentsCard",
     props: ['galleryId'],
     components: {
-      AppCreateComment
+      AppCreateComment,
+      AppCommentsList
     },
     data() {
       return {
         comments: [],
       }
     },
-    mixins: [formatDate],
     computed: {
-      ...mapGetters(['getUserId', 'getUserName', 'loggedIn'])
+      ...mapGetters(['loggedIn'])
     },
     methods: {
       updateComments(newComment) {
@@ -61,18 +56,6 @@
 <style scoped>
   .comments {
     margin-top: 20px;
-  }
-
-  .commentCard {
-    width: 300px;
-    height: 130px;
-    margin: 10px auto;
-    border: 2px skyblue solid;
-    background-color: whitesmoke;
-    font-family: SansSerif;
-    padding-top: 15px;
-    border-radius: 20px;
-    overflow: auto;
   }
 
 </style>
