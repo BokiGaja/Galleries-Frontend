@@ -38,12 +38,14 @@
   import {galleryService} from "../services/GalleryService";
   import AppShowError from '@/components/AppShowError'
   import {mapGetters} from 'vuex'
+  import {catchError} from "../mixins/CatchError";
 
   export default {
     name: "NewGallery",
     components: {
       AppShowError
     },
+    mixins: [catchError],
     data() {
       return {
         galleryId: null,
@@ -53,8 +55,6 @@
           images: [''],
           user_id: 0
         },
-        error: false,
-        errorMessage: '',
         editing: false
       }
     },
@@ -86,22 +86,19 @@
           currArr[index] = currInput;
         }
         this.credentials.images = [...currArr];
-
       },
       async submitGallery() {
         if (this.editing) {
           const data = await galleryService.editGallery(this.$route.params.id, {...this.credentials});
           if (data) {
-            this.error = true;
-            this.errorMessage = data.error;
+            this.catchError(data);
           } else {
             this.$router.push('/galleries/' + this.$route.params.id);
           }
         } else {
           const data = await galleryService.createGallery({...this.credentials, user_id: parseInt(this.getUserId)});
           if (data) {
-            this.error = true;
-            this.errorMessage = data.error;
+            this.catchError(data);
           } else {
             this.$router.push('/my-galleries');
           }

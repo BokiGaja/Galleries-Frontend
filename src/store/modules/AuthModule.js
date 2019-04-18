@@ -37,8 +37,8 @@ export const authModule = {
           commit('setUserName', response.user.first_name);
           commit('retrieveToken', response.access_token);
         }
-        if (response.error) {
-          return response.error;
+        if (response) {
+          return response;
         }
       } catch (e) {
         return e;

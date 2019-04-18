@@ -38,12 +38,14 @@
   import {authService} from "../services/AuthService"
   import AppShowError from '@/components/AppShowError'
   import {mapActions} from 'vuex'
+  import {catchError} from "../mixins/CatchError";
 
   export default {
     name: "Register",
     components: {
       AppShowError
     },
+    mixins: [catchError],
     data() {
       return {
         credentials: {
@@ -54,8 +56,6 @@
           password_confirmation: ''
         },
         checked: false,
-        error: false,
-        errorMessage: ''
       }
     },
     methods: {
@@ -65,8 +65,7 @@
           try {
             const data = await authService.register({...this.credentials});
             if (data) {
-              this.error = true;
-              this.errorMessage = data.error;
+              this.catchError(data);
             } else {
               this.login({...this.credentials});
               this.$router.push('/');

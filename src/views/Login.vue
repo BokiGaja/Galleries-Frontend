@@ -19,29 +19,28 @@
 <script>
   import {mapActions} from 'vuex'
   import AppShowError from '@/components/AppShowError'
+  import {catchError} from "../mixins/CatchError";
 
   export default {
     name: "Login",
     components: {
       AppShowError
     },
+    mixins: [catchError],
     data() {
       return {
         credentials: {
           email: '',
           password: ''
         },
-        error: false,
-        errorMessage: ''
       }
     },
     methods: {
       ...mapActions(['login']),
       async loginAndRedirect() {
-        const loginError = await this.login(this.credentials);
-        if (loginError) {
-          this.error = true;
-          this.errorMessage = loginError;
+        const data = await this.login(this.credentials);
+        if (data.error) {
+          this.catchError(data);
         } else {
           this.$router.push('/');
         }
