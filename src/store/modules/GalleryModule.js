@@ -1,4 +1,5 @@
 import {galleryService} from "../../services/GalleryService";
+import {searchService} from "../../services/SearchService";
 
 export const galleryModule = {
   state: {
@@ -21,26 +22,10 @@ export const galleryModule = {
       state.originalAuthorsGalleries = [...data];
     },
     filterAllGalleries(state, searchParams) {
-      if (searchParams.length > 0) {
-        state.galleries = state.originalList.filter(
-          gallery => gallery.title.includes(searchParams) ||
-            gallery.description.includes(searchParams) ||
-            gallery.user.first_name.includes(searchParams) ||
-            gallery.user.first_name.includes(searchParams))
-      } else {
-        state.galleries = state.originalList
-      }
+      state.galleries = [...searchService.filterArray(searchParams, state.originalList)];
     },
     filterAuthorsGalleries(state, searchParams) {
-      if (searchParams.length > 0) {
-        state.authorsGalleries = state.originalAuthorsGalleries.filter(
-          gallery => gallery.title.includes(searchParams) ||
-            gallery.description.includes(searchParams) ||
-            gallery.user.first_name.includes(searchParams) ||
-            gallery.user.first_name.includes(searchParams))
-      } else {
-        state.authorsGalleries = state.originalAuthorsGalleries
-      }
+      state.authorsGalleries = [...searchService.filterArray(searchParams, state.originalAuthorsGalleries)];
     },
   },
   actions: {

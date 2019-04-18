@@ -23,7 +23,7 @@ class CommentService {
   }
 
   async deleteComment(id) {
-    return comment.delete('/'+id);
+    return comment.delete('/' + id);
   }
 }
 

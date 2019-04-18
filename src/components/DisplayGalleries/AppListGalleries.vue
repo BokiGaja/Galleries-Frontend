@@ -1,5 +1,5 @@
 <template>
-  <div class="container listGalleries">
+  <div class="listGalleries">
     <div   class="wrapper" v-if="galleries.length !== 0">
       <div v-for="(gallery, index) in galleries.slice(0, currPage*numberOfCardsOnPage)" :key="index">
         <app-gallery-card :gallery="gallery" :singleGallery="false" />
@@ -34,18 +34,19 @@
 
 <style scoped>
   .listGalleries {
-    margin-left: 100px;
+    /*margin-left: 100px;*/
+    margin: auto;
     width: 100%;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
   }
   .wrapper {
-    margin-left: 0;
-    width: 100%;
     display: grid;
     grid-gap: 10px;
     grid-template-columns: auto auto auto auto auto;
   }
   .showMoreButton {
-    margin-left: 350px;
+    width: 150px;
+    margin: auto;
   }
 </style>
