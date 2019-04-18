@@ -8,12 +8,9 @@ const auth = axios.create({
 class AuthService {
   async register(credentials) {
     try {
-      const {data} = await auth.post('/register', credentials);
-      if (data) {
-        return data;
-      }
+        await auth.post('/register', credentials);
     } catch (e) {
-      return e;
+      return e.response.data;
     }
   }
   async login(credentials) {
@@ -26,7 +23,7 @@ class AuthService {
       }
       return data;
     } catch (e) {
-      return e;
+      return e.response.data;
     }
   }
 

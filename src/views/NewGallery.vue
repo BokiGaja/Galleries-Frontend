@@ -68,7 +68,7 @@
     },
     methods: {
       addUrlInput() {
-        this.credentials.images.unshift('');
+        this.credentials.images.push('');
       },
       removeUrlInput(index) {
         this.credentials.images.splice(index, 1);
