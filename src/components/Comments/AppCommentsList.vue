@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="commentsList">
+    <div v-if="comments.length === 0">
+      <h4>No comments</h4>
+    </div>
     <div v-for="(comment, index) in comments" :key="index" class="commentCard">
       <h5>{{ comment.content }}</h5>
       <p class="text-muted">by {{comment.user.first_name}} at {{comment.created_at | formatDate}}</p>
@@ -29,6 +32,10 @@
 </script>
 
 <style scoped>
+  .commentsList {
+    height: 400px;
+    overflow-y: scroll;
+  }
   .commentCard {
     width: 300px;
     height: 130px;

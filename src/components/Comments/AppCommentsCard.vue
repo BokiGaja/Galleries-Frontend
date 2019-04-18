@@ -54,8 +54,5 @@
 </script>
 
 <style scoped>
-  .comments {
-    margin-top: 20px;
-  }
 
 </style>

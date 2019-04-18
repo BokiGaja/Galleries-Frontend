@@ -32,7 +32,7 @@
 
 <style scoped>
   .carousel-image {
-    width: 600px;
+    width: 700px;
     height: 400px;
   }
 </style>

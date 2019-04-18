@@ -5,7 +5,7 @@
         <app-gallery-card :gallery="gallery" :singleGallery="false" />
       </div>
     </div>
-    <button class="btn btn-info btn-lg showMoreButton" @click="currPage++" v-if="galleries.length > currPage*numberOfCardsOnPage">
+    <button class="btn btn-info btn-lg showMoreButton" style="margin-top: 30px" @click="currPage++" v-if="galleries.length > currPage*numberOfCardsOnPage">
       Load more
     </button>
     <div class="alert alert-danger" v-if="galleries.length === 0" style="text-align: center">There is no gallery
@@ -34,15 +34,16 @@
 
 <style scoped>
   .listGalleries {
-    /*margin-left: 100px;*/
     margin: auto;
     width: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
   }
   .wrapper {
+    margin: 10px auto;
     display: grid;
-    grid-gap: 10px;
+    grid-gap: 30px;
     grid-template-columns: auto auto auto auto auto;
   }
   .showMoreButton {

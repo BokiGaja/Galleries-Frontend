@@ -15,7 +15,7 @@ class AuthService {
       return e;
     }
   }
-
+  // todo Add autoLogout
   async login(credentials) {
     try {
       const {data} = await auth.post('/login', credentials);
@@ -33,10 +33,10 @@ class AuthService {
   async logout(token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ` + token;
     try {
-      const {data} = await auth.post('/logout');
       localStorage.removeItem('token');
       localStorage.removeItem('userId');
       localStorage.removeItem('userName');
+      const {data} = await auth.post('/logout');
       return data;
     } catch (e) {
       return e;

@@ -1,16 +1,7 @@
 <template>
   <div>
-    <div :class="singleGallery? 'card singleGalleryCard' : 'card galleryCard'">
-      <div class="card-body">
-        <h5 class="card-title cardLink" @click="seeGallery">{{gallery.title}}</h5>
-        <div v-if="singleGallery">
-          <app-single-gallery-card :gallery="gallery"/>
-        </div>
-        <div v-if="!singleGallery">
-          <app-gallery-list-card :gallery="gallery"/>
-        </div>
-      </div>
-    </div>
+    <app-single-gallery-card v-if="singleGallery" :gallery="gallery"/>
+    <app-gallery-list-card v-if="!singleGallery" :gallery="gallery"/>
   </div>
 </template>
 

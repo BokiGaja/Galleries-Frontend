@@ -1,29 +1,34 @@
 <template>
-  <div class="createPage">
-    <h1 class="createTitle">{{editing ? 'Edit your' : 'Create New'}} Gallery</h1>
-    <form @submit.prevent="submitGallery">
-      <input type="text" class="form-control createInput" placeholder="Title" v-model="credentials.title">
-      <textarea class="form-control D" id="exampleFormControlTextarea2" rows="3" placeholder="Description"
-                v-model="credentials.description"/>
-      <div v-for="(image, index) in credentials.images" :key="index">
-        <div style="display: flex; flex-direction: row">
-          <button type="button" class="btn btn-success" v-if="index !== 0" @click="moveInput(index, 'up')">↑</button>
-          <button type="button" class="btn btn-danger" v-if="index !== credentials.images.length - 1"
-                  @click="moveInput(index, 'down')">↓
-          </button>
-          <input type="text" placeholder="Picture URL" class="form-control createInput"
-                 v-model="credentials.images[index]">
-          <button type="button" class="btn btn-danger" @click="removeUrlInput(index)" v-if="index > 0">-</button>
-          <button type="button" class="btn btn-success" @click="addUrlInput"
-                  v-if="index === credentials.images.length-1">+
-          </button>
+  <div style="height: 100vh">
+    <div class="createPage">
+      <h1 class="createTitle">{{editing ? 'Edit your' : 'Create New'}} Gallery</h1>
+      <form @submit.prevent="submitGallery">
+        <input type="text" class="form-control createInput" placeholder="Title" v-model="credentials.title">
+        <textarea class="form-control D" id="exampleFormControlTextarea2" rows="3" placeholder="Description"
+                  v-model="credentials.description"/>
+        <div v-for="(image, index) in credentials.images" :key="index">
+          <div style="display: flex; flex-direction: row">
+            <button type="button" class="btn btn-success" v-if="index !== 0" @click="moveInput(index, 'up')">↑</button>
+            <button type="button" class="btn btn-danger" v-if="index !== credentials.images.length - 1"
+                    @click="moveInput(index, 'down')">↓
+            </button>
+            <input type="text" placeholder="Picture URL" class="form-control createInput"
+                   v-model="credentials.images[index]">
+            <button type="button" class="btn btn-danger" @click="removeUrlInput(index)" v-if="index > 0">-</button>
+            <button type="button" class="btn btn-success" @click="addUrlInput"
+                    v-if="index === credentials.images.length-1">+
+            </button>
+          </div>
         </div>
+        <button class="btn btn-primary" type="submit">{{editing ? 'Edit' : 'Add New'}} Gallery</button>
+        <router-link class="btn btn-danger"
+                     :to="editing ? {name: 'singleGallery', params: {id: this.$route.params.id}} : {name: 'myGalleries'}">
+          Cancel
+        </router-link>
+      </form>
+      <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
+        {{ errorMessage }}
       </div>
-      <button class="btn btn-primary" type="submit">{{editing ? 'Edit' : 'Add New'}} Gallery</button>
-      <router-link class="btn btn-danger" :to="editing ? {name: 'singleGallery', params: {id: this.$route.params.id}} : {name: 'myGalleries'}">Cancel</router-link>
-    </form>
-    <div class="alert alert-danger" role="alert" v-if="error" style="margin-top: 30px">
-      {{ errorMessage }}
     </div>
   </div>
 </template>
@@ -123,8 +128,8 @@
     text-align: center;
     padding-top: 20px;
     background-color: whitesmoke;
-    width: 300px;
-    height: 450px;
+    width: 400px;
+    height: 500px;
     border: 3px skyblue solid;
     border-radius: 20px;
   }
