@@ -24,23 +24,17 @@ class GalleryService {
 
   async createGallery(credentials) {
     try {
-      const {data} = await gallery.post('', credentials);
-      if (data) {
-        return data;
-      }
+      await gallery.post('', credentials);
     } catch (e) {
-      return e;
+      return e.response.data;
     }
   }
 
   async editGallery(id, credentials) {
     try {
-      const {data} = await gallery.patch('/' + id, credentials);
-      if (data) {
-        return data;
-      }
+      await gallery.patch('/' + id, credentials);
     } catch (e) {
-      return e;
+      return e.response.data;
     }
   }
 
