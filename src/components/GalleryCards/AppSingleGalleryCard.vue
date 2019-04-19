@@ -13,7 +13,7 @@
         <p class="card-text text-muted">{{gallery.created_at | formatDate}}</p>
       </div>
       <div v-if="gallery.user.id == getUserId">
-        <router-link :to="{name: 'editGallery', params: {id: gallery.id}}" class="btn btn-primary">Edit
+        <router-link :to="{name: 'editGallery', params: {id: gallery.id}}" class="btn btn-primary" style="margin-right: 10px">Edit
         </router-link>
         <button class="btn btn-danger" @click="deleteGallery(gallery.id)">Delete</button>
       </div>

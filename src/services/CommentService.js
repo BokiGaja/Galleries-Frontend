@@ -13,12 +13,9 @@ class CommentService {
 
   async createComment(credentials) {
     try {
-      const {data} = await comment.post('', credentials);
-      if (data) {
-        return data;
-      }
+      await comment.post('', credentials);
     } catch (e) {
-      return e;
+      return e.response.data;
     }
   }
 
