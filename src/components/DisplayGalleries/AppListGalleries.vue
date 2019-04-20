@@ -25,10 +25,8 @@
     data() {
       return {
         currPage: 1,
-        searchParams: '',
       }
     },
-
   }
 </script>
 
