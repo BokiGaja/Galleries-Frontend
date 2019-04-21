@@ -3,24 +3,23 @@
     <app-show-error :error="error" :errorMessage="errorMessage"/>
     <div class="createPage">
       <h1 class="createTitle">{{editing ? 'Edit your' : 'Create New'}} Gallery</h1>
-      <button type="button" class="btn btn-success" @click="addUrlInput">Add image
-      </button>
-      <button class="btn btn-primary" @click="submitGallery" style="margin: auto 10px">{{editing ? 'Edit' : 'Create New'}} Gallery</button>
-      <router-link class="btn btn-danger"
-                   :to="editing ? {name: 'singleGallery', params: {id: this.$route.params.id}} : {name: 'myGalleries'}">
-        Cancel
-      </router-link>
-      <form>
-        <input type="text" class="form-control createInput" placeholder="Title" v-model="credentials.title">
+      <form @submit.prevent="submitGallery">
+        <button type="button" class="btn btn-success" @click="addUrlInput">Add image
+        </button>
+        <button class="btn btn-primary" type="submit"  style="margin: auto 10px">{{editing ? 'Edit' : 'Create New'}} Gallery</button>
+        <router-link class="btn btn-danger" type="button"
+                     :to="editing ? {name: 'singleGallery', params: {id: this.$route.params.id}} : {name: 'myGalleries'}">
+          Cancel
+        </router-link>
+        <input type="text" class="form-control createInput" placeholder="Title" v-model="credentials.title" required>
         <textarea class="form-control D" rows="3" placeholder="Description"
                   v-model="credentials.description"/>
         <div v-for="(image, index) in credentials.images" :key="index">
           <div style="display: flex; flex-direction: row">
             <div style="display: flex; flex-direction: row; align-items: center">
-
               <button type="button" class="btn btn-danger" @click="removeUrlInput(index)">-</button>
               <input type="text" placeholder="Image URL" class="form-control createInput"
-                     v-model="credentials.images[index]">
+                     v-model="credentials.images[index]" required>
               <button type="button" class="btn btn-success" v-if="index !== 0" @click="moveInput(index, 'up')">↑
               </button>
               <button type="button" class="btn btn-danger" v-if="index !== credentials.images.length - 1"
