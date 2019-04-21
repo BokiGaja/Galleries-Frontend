@@ -12,7 +12,7 @@
     </div>
     <div class="authBox">
       <button class="btn btn-outline-info btn-rounded waves-effect" type="button" v-if="loggedIn" @click="logoutAndRedirect">
-        Logout({{getUserName}})
+        Logout ({{getUserName}})
       </button>
     </div>
   </div>

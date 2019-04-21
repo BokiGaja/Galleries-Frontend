@@ -5,7 +5,7 @@
       <h1 class="createTitle">{{editing ? 'Edit your' : 'Create New'}} Gallery</h1>
       <button type="button" class="btn btn-success" @click="addUrlInput">Add image
       </button>
-      <button class="btn btn-primary" @click="submitGallery">{{editing ? 'Edit' : 'Create New'}} Gallery</button>
+      <button class="btn btn-primary" @click="submitGallery" style="margin: auto 10px">{{editing ? 'Edit' : 'Create New'}} Gallery</button>
       <router-link class="btn btn-danger"
                    :to="editing ? {name: 'singleGallery', params: {id: this.$route.params.id}} : {name: 'myGalleries'}">
         Cancel
