@@ -70,7 +70,7 @@
         this.credentials.images.push('');
       },
       removeUrlInput(index) {
-        this.credentials.images.splice(index, 1);
+        this.credentials.images = this.credentials.images.filter((image, currIndex) => currIndex !== index);
       },
       moveInput(index, direction) {
         let currArr = [...this.credentials.images];
